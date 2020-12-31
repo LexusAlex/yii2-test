@@ -1,0 +1,5 @@
+docker pull nginx:1.19
+docker pull php:7.4-fpm
+docker pull php:7.4-cli-alpine
+
+docker-compose run --rm php-cli-alpine composer require yiisoft/yii2

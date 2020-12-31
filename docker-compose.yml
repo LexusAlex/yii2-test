@@ -1,0 +1,25 @@
+version: "3.7"
+services:
+    nginx-debian: # веб-сервер nginx
+        build:
+            context: ./docker/nginx-debian
+            dockerfile: Dockerfile
+        ports:
+            - "80:80"
+        volumes:
+            - ./:/yii2-test
+        depends_on:
+            - php-fpm-debian
+    php-fpm-debian: # php-fpm для веб сервера
+        build:
+            context: ./docker/php-fpm-debian
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/yii2-test
+    php-cli-alpine: # php консольный вариант для технических целей
+        user: 1000:1000
+        build:
+            context: ./docker/php-cli-alpine
+            dockerfile: Dockerfile
+        volumes:
+            - ./:/yii2-test
